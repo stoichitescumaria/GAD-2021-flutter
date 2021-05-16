@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
               }
             ),
             Text(
-                changed == true ? result.toString() + " RON" : "",
+                changed == true ? result.toStringAsFixed(2) + " RON" : "",
                 textScaleFactor: 2,
             )
 
