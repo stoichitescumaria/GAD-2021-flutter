@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -18,7 +19,6 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -29,23 +29,26 @@ class _MyHomePageState extends State<MyHomePage> {
   bool _popUp = false;
   int _number = -1;
   String _message;
-  final _controler =  TextEditingController();
+  final _controler = TextEditingController();
+
   void initNumber() {
     _message = null;
     Random random = new Random();
     _number = random.nextInt(100) + 1;
   }
+
   void generateMessage(int value) {
-    if(value < _number) {
+    if (value < _number) {
       _message = "You tried " + value.toString() + "\nTry higher";
-    } else if(value > _number) {
+    } else if (value > _number) {
       _message = "You tried " + value.toString() + "\nTry lower";
     } else {
       _reset = true;
       _popUp = true;
-        _message = null;
+      _message = null;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,32 +76,29 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               textAlign: TextAlign.center,
             ),
-            if(_message != null)
-                Text(
-                  _message,
+            if (_message != null)
+              Text(
+                _message,
                 style: TextStyle(
                   fontSize: 25,
                 ),
                 textAlign: TextAlign.center,
               ),
-
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 24.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 50.0, horizontal: 24.0),
               child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      spreadRadius: 1,
-                      blurRadius: 10,
-                    )
-                  ]
-
-                ),
+                decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    spreadRadius: 1,
+                    blurRadius: 10,
+                  )
+                ]),
                 child: Column(
                   children: [
-                    Text("Try a number",
+                    Text(
+                      "Try a number",
                       style: TextStyle(
                         fontSize: 30,
                       ),
@@ -106,41 +106,37 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     TextField(
                         controller: _controler,
-                        keyboardType:  TextInputType.number,
+                        keyboardType: TextInputType.number,
                         onChanged: (String s) {
                           _amount = s;
-                        }
-                    ),
+                        }),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
-                          child: _reset ?  Text(
-                                "Reset"
-                          ): Text(
-                              "Guess"
-                          ),
+                          child: _reset ? Text("Reset") : Text("Guess"),
                           onPressed: () {
-                            if(_reset = true){
+                            if (_reset = true) {
                               setState(() {
                                 _reset = false;
                                 return;
                               });
                             }
-                            if(_amount != null) {
-                              try{
+                            if (_amount != null) {
+                              try {
                                 int x = int.parse(_amount);
                                 setState(() {
-                                  if(_number == -1) {
+                                  if (_number == -1) {
                                     initNumber();
                                   }
                                   generateMessage(x);
                                 });
                               } on FormatException {
-                                setState(() {},
+                                setState(
+                                  () {},
                                 );
                               }
                             }
-                            if(_popUp == true) {
+                            if (_popUp == true) {
                               return showDialog(
                                 context: context,
                                 builder: (context) => AlertDialog(
@@ -158,8 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             _amount = "";
                                             Navigator.of(context).pop();
                                           });
-                                        }
-                                        ),
+                                        }),
                                     ElevatedButton(
                                         child: Text("OK"),
                                         onPressed: () {
@@ -171,25 +166,20 @@ class _MyHomePageState extends State<MyHomePage> {
                                             _controler.clear();
                                             Navigator.of(context).pop();
                                           });
-                                        }
-                                    ),
-
+                                        }),
                                   ],
                                 ),
                               );
                             }
-                          }
-                      ),
+                          }),
                     ),
                   ],
                 ),
               ),
             ),
-
           ],
         ),
       ),
     );
   }
 }
-
