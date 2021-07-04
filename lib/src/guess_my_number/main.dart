@@ -123,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       onPressed: () {
                         if (_reset = true) {
                           setState(
-                                () {
+                            () {
                               _reset = false;
                               return;
                             },
@@ -133,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           try {
                             final int x = int.parse(_amount!);
                             setState(
-                                  () {
+                              () {
                                 if (_number == -1) {
                                   initNumber();
                                 }
@@ -142,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             );
                           } on FormatException {
                             setState(
-                                  () {},
+                              () {},
                             );
                           }
                         }
@@ -157,7 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   child: const Text('Try again?'),
                                   onPressed: () {
                                     setState(
-                                          () {
+                                      () {
                                         _reset = false;
                                         _popUp = false;
                                         _number = -1;
@@ -172,7 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   child: const Text('OK'),
                                   onPressed: () {
                                     setState(
-                                          () {
+                                      () {
                                         _reset = true;
                                         _popUp = false;
                                         _number = -1;

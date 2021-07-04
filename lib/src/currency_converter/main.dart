@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () {
               if (amount == null) {
                 setState(
-                      () {
+                  () {
                     wrongInput = 'please enter a number';
                   },
                 );
@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 try {
                   final double x = double.parse(amount!);
                   setState(
-                        () {
+                    () {
                       result = 4.5 * x;
                       changed = true;
                       wrongInput = null;
@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 } on FormatException {
                   setState(
-                        () {
+                    () {
                       wrongInput = 'please enter a number';
                     },
                   );
